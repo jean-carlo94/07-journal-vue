@@ -6,6 +6,9 @@ export const getEntriesByTerm = ( state: State ) => ( term = '' ) => {
     return state.entries.filter( (entry) => entry.text.toLowerCase().includes( term.toLowerCase() ) );
 }
 
-export const getEntriesById = ( state: State ) => {
- 
+export const getEntriesById = ( state: State ) => ( id = '' ) => {
+    const entry = state.entries.find( (entry) => entry.id === id );
+    if( !entry ) return;
+    
+    return {...entry};
 }

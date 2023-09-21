@@ -17,6 +17,8 @@
 </template>
 
 <script lang="ts">
+import getDayMontYear from '../helpers/getDayMontYear';
+
 
 export default {
     props: {
@@ -32,20 +34,20 @@ export default {
                     : this.entry.text;
         },
         getDay() {
-            return new Date(this.entry.date).getDate();
+            const { day } = getDayMontYear( this.entry.date );
+            return day;
         },
         getNameMonth() {
-            const date = new Date(this.entry.date);
-            const month = new Intl.DateTimeFormat("es-ES",{ month: "long" }).format(date);
-            return month[0].toUpperCase() + month.substring(1);
+            const { month } = getDayMontYear( this.entry.date );
+            return month;
         },
         getYear() {
-            return new Date(this.entry.date).getFullYear();
+            const { year } = getDayMontYear( this.entry.date );
+            return year;
         },
         getNameDay() {
-            const date = new Date(this.entry.date);
-            const day = new Intl.DateTimeFormat("es-ES",{ weekday: "long" }).format(date);
-            return day[0].toUpperCase() + day.substring(1);
+            const { dayName } = getDayMontYear( this.entry.date );
+            return dayName;
         },
     }
 }
